@@ -1,189 +1,841 @@
+/* Reset a základní nastavení */
 * {
     box-sizing: border-box;
-}
-
-body {
-    background-color: #f1f5f9;
-    color: #0f172a;
-    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
 }
 
+:root {
+    --rm-blue: #00529f;
+    --rm-blue-dark: #003a70;
+    --rm-blue-deep: #001f3f;
+    --rm-gold: #febe10;
+    --rm-gold-light: #ffd647;
+    --bg-light: #f1f5f9;
+    --text-dark: #0f172a;
+    --text-muted: #64748b;
+    --white: #ffffff;
+    --border: #e2e8f0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+    font-family: 'Inter', Arial, sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* === HLAVIČKA A MENU === */
+
 .hlavicka {
-    background-color: #00529f;
-    color: white;
-    padding: 20px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: var(--rm-blue);
+    border-bottom: 4px solid var(--rm-gold);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, .15);
+}
+
+.hlavicka-obsah {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 12px 20px;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 20px;
-    border-bottom: 4px solid #febe10;
+}
+
+.logo-odkaz {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
 }
 
 .logo {
-    width: 80px;
-    height: auto;
-    background: white;
-    padding: 5px;
-    border-radius: 8px;
+    width: 52px;
+    height: 52px;
+    object-fit: contain;
+    background: var(--white);
+    padding: 4px;
+    border-radius: 50%;
+    transition: transform .3s ease;
 }
 
-h1 {
-    margin: 0;
-    font-size: 32px;
-}
-
-.podnadpis {
-    color: #febe10;
-    font-weight: bold;
-    margin: 5px 0 0 0;
+.logo-odkaz:hover .logo {
+    transform: scale(1.1) rotate(-5deg);
 }
 
 .menu {
-    background-color: white;
-    padding: 10px 20px;
-    border-bottom: 1px solid #ddd;
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 6px;
 }
 
 .menu a {
-    color: #00529f;
+    color: var(--white);
     text-decoration: none;
-    font-weight: bold;
-    padding: 5px 8px;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 8px 14px;
+    border-radius: 6px;
+    transition: background-color .25s ease, color .25s ease;
 }
 
 .menu a:hover {
-    color: #febe10;
+    background-color: var(--rm-gold);
+    color: var(--rm-blue-deep);
 }
+
+/* === HERO SEKCE === */
+
+.hero {
+    position: relative;
+    min-height: 560px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 80px 20px;
+    overflow: hidden;
+    background:
+        radial-gradient(ellipse at top, rgba(254, 190, 16, .25), transparent 60%),
+        radial-gradient(ellipse at bottom, rgba(0, 82, 159, .5), transparent 70%),
+        linear-gradient(180deg, var(--rm-blue-deep) 0%, var(--rm-blue-dark) 50%, var(--rm-blue) 100%);
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--rm-blue), var(--rm-gold), var(--rm-blue));
+    background-size: 200% 100%;
+    animation: shine 4s linear infinite;
+}
+
+@keyframes shine {
+    to {
+        background-position: 200% 0;
+    }
+}
+
+.hero-obsah {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    animation: hero-fade-up .9s ease both;
+}
+
+@keyframes hero-fade-up {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero-podnadpis {
+    display: inline-block;
+    padding: 6px 16px;
+    margin-bottom: 24px;
+    border: 1px solid var(--rm-gold);
+    border-radius: 999px;
+    color: var(--rm-gold);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.hero-nadpis {
+    font-family: 'Anton', sans-serif;
+    font-size: clamp(56px, 12vw, 140px);
+    line-height: .95;
+    letter-spacing: 2px;
+    color: var(--white);
+    margin-bottom: 16px;
+    text-shadow: 0 4px 30px rgba(0, 0, 0, .4);
+}
+
+.hero-motto {
+    font-family: 'Anton', sans-serif;
+    font-size: clamp(20px, 3vw, 32px);
+    color: var(--rm-gold);
+    letter-spacing: 6px;
+    margin-bottom: 24px;
+    animation: blink-gold 2s ease-in-out infinite;
+}
+
+@keyframes blink-gold {
+
+    0%,
+    100% {
+        opacity: 1;
+        text-shadow: 0 0 12px rgba(254, 190, 16, .7);
+    }
+
+    50% {
+        opacity: .75;
+        text-shadow: 0 0 4px rgba(254, 190, 16, .3);
+    }
+}
+
+.hero-popis {
+    color: rgba(255, 255, 255, .85);
+    font-size: clamp(14px, 1.6vw, 17px);
+    max-width: 640px;
+    margin: 0 auto 32px;
+    line-height: 1.7;
+}
+
+.hero-tlacitko {
+    display: inline-block;
+    padding: 14px 32px;
+    background: var(--rm-gold);
+    color: var(--rm-blue-deep);
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 1px;
+    text-decoration: none;
+    border-radius: 999px;
+    box-shadow: 0 8px 24px rgba(254, 190, 16, .35);
+    transition: transform .25s ease, box-shadow .25s ease, background-color .25s ease;
+}
+
+.hero-tlacitko:hover {
+    transform: translateY(-3px);
+    background: var(--rm-gold-light);
+    box-shadow: 0 12px 32px rgba(254, 190, 16, .55);
+}
+
+.hero-scroll {
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--rm-gold);
+    font-size: 20px;
+    animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateX(-50%) translateY(0);
+    }
+
+    50% {
+        transform: translateX(-50%) translateY(10px);
+    }
+}
+
+/* === HLAVNÍ OBSAH (DVA SLOUPCE) === */
 
 .obsah {
-    max-width: 1000px;
-    margin: 20px auto;
-    padding: 0 15px;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
     display: grid;
     grid-template-columns: 2fr 1fr;
-    gap: 20px;
+    gap: 24px;
+    align-items: start;
 }
+
+.hlavni-panel {
+    min-width: 0;
+}
+
+/* === KARTY === */
 
 .karta {
-    background: white;
-    padding: 20px;
+    background: var(--white);
+    padding: 28px;
+    margin-bottom: 24px;
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .04);
+    scroll-margin-top: 100px;
+    transition: box-shadow .3s ease, transform .3s ease;
+}
+
+.karta:hover {
+    box-shadow: 0 8px 24px rgba(0, 82, 159, .08);
+}
+
+.karta h2 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--rm-blue);
+    font-family: 'Anton', sans-serif;
+    font-size: 26px;
+    letter-spacing: 1px;
     margin-bottom: 20px;
-    border-radius: 8px;
-    border: 1px solid #e2e8f0;
+    padding-bottom: 14px;
+    border-bottom: 3px solid var(--rm-gold);
 }
 
-h2 {
-    color: #00529f;
-    margin-top: 0;
-    border-left: 4px solid #febe10;
-    padding-left: 10px;
+.cislo-sekce {
+    color: var(--rm-gold);
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1px;
 }
 
-h3 {
-    color: #00529f;
-    margin-top: 15px;
+.karta h3 {
+    color: var(--rm-blue);
+    font-size: 17px;
+    font-weight: 700;
+    margin: 22px 0 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
-.mrizka-legendy,
+.karta p {
+    color: var(--text-dark);
+    margin-bottom: 12px;
+    line-height: 1.75;
+}
+
+.karta p:last-child {
+    margin-bottom: 0;
+}
+
+.karta strong {
+    color: var(--rm-blue);
+}
+
+/* === LEGENDY === */
+
+.mrizka-legendy {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 16px;
+}
+
+.legenda {
+    background: linear-gradient(135deg, var(--rm-blue) 0%, var(--rm-blue-dark) 100%);
+    color: var(--white);
+    padding: 20px 14px;
+    border-radius: 12px;
+    text-align: center;
+    border: 2px solid transparent;
+    transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+}
+
+.legenda:hover {
+    transform: translateY(-6px);
+    border-color: var(--rm-gold);
+    box-shadow: 0 12px 28px rgba(0, 82, 159, .35);
+}
+
+.legenda-foto {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 12px;
+    display: grid;
+    place-items: center;
+    background: var(--rm-gold);
+    color: var(--rm-blue-deep);
+    font-family: 'Anton', sans-serif;
+    font-size: 26px;
+    letter-spacing: 1px;
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px rgba(255, 255, 255, .1);
+}
+
+.legenda h4 {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    line-height: 1.3;
+}
+
+.legenda-pozice {
+    font-size: 11px;
+    color: var(--rm-gold);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 4px !important;
+}
+
+.legenda-roky {
+    font-size: 11px;
+    color: rgba(255, 255, 255, .7) !important;
+    margin-bottom: 0 !important;
+}
+
+/* === TIMELINE === */
+
+.timeline {
+    position: relative;
+    padding-left: 8px;
+}
+
+.timeline-polozka {
+    position: relative;
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: 24px;
+    padding-bottom: 28px;
+    padding-left: 28px;
+    border-left: 2px solid var(--border);
+}
+
+.timeline-polozka:last-child {
+    border-left-color: transparent;
+    padding-bottom: 0;
+}
+
+.timeline-polozka::before {
+    content: '';
+    position: absolute;
+    left: -8px;
+    top: 4px;
+    width: 14px;
+    height: 14px;
+    background: var(--rm-gold);
+    border: 3px solid var(--white);
+    border-radius: 50%;
+    box-shadow: 0 0 0 2px var(--rm-blue);
+    transition: transform .3s ease;
+}
+
+.timeline-polozka:hover::before {
+    transform: scale(1.3);
+}
+
+.timeline-rok {
+    font-family: 'Anton', sans-serif;
+    font-size: 28px;
+    color: var(--rm-blue);
+    letter-spacing: 1px;
+    line-height: 1;
+    padding-top: 2px;
+}
+
+.timeline-text h4 {
+    font-size: 16px;
+    color: var(--text-dark);
+    margin-bottom: 4px;
+}
+
+.timeline-text p {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin: 0;
+}
+
+/* === TROFEJE === */
+
+.mrizka-trofeji {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 14px;
+}
+
+.trofej {
+    background: linear-gradient(160deg, #fff9e6 0%, #fff 100%);
+    border: 2px solid var(--rm-gold);
+    border-radius: 12px;
+    padding: 20px 12px;
+    text-align: center;
+    transition: transform .3s ease, box-shadow .3s ease, background .3s ease;
+    cursor: default;
+}
+
+.trofej:hover {
+    transform: translateY(-4px);
+    background: linear-gradient(160deg, #fff3cc 0%, #fff9e6 100%);
+    box-shadow: 0 10px 24px rgba(254, 190, 16, .35);
+}
+
+.trofej-cislo {
+    font-family: 'Anton', sans-serif;
+    font-size: 44px;
+    line-height: 1;
+    color: var(--rm-blue);
+    margin-bottom: 6px;
+}
+
+.trofej-nazev {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-dark);
+}
+
+/* === SOUPISKA === */
+
 .mrizka-hraci {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 10px;
 }
 
-.polozka,
 .hrac {
+    display: flex;
+    align-items: center;
     background-color: #f8fafc;
-    border: 1px solid #e2e8f0;
-    padding: 8px 12px;
-    border-radius: 6px;
-    font-weight: bold;
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--rm-blue);
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    transition: transform .25s ease, background-color .25s ease, border-color .25s ease;
+}
+
+.hrac:hover {
+    transform: translateX(4px);
+    background-color: #eff6ff;
+    border-left-color: var(--rm-gold);
 }
 
 .cislo {
-    background-color: #00529f;
-    color: #febe10;
-    padding: 2px 6px;
-    border-radius: 4px;
-    font-size: 12px;
-    margin-right: 6px;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-th, td {
-    padding: 10px;
-    border-bottom: 1px solid #eee;
-    text-align: left;
-}
-
-th {
-    background-color: #f8fafc;
-    color: #00529f;
-}
-
-.rok {
-    background-color: #00529f;
-    color: white;
+    background-color: var(--rm-blue);
+    color: var(--rm-gold);
     padding: 3px 8px;
     border-radius: 4px;
-    font-weight: bold;
+    font-size: 11px;
+    font-weight: 700;
+    margin-right: 10px;
+    font-family: 'Anton', sans-serif;
+    letter-spacing: 1px;
+}
+
+/* === POSTRANNÍ PANEL === */
+
+.postranni-panel {
+    min-width: 0;
+    position: sticky;
+    top: 100px;
+}
+
+.karta-trener {
+    text-align: center;
+    background: linear-gradient(160deg, var(--rm-blue) 0%, var(--rm-blue-dark) 100%);
+    color: var(--white);
+    border: none;
+}
+
+.karta-trener h3 {
+    color: var(--rm-gold);
+    justify-content: center;
+    margin-top: 0;
+}
+
+.trener-foto {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 14px;
+    display: grid;
+    place-items: center;
+    background: var(--rm-gold);
+    color: var(--rm-blue-deep);
+    font-family: 'Anton', sans-serif;
+    font-size: 34px;
+    border-radius: 50%;
+    box-shadow: 0 0 0 5px rgba(254, 190, 16, .2);
 }
 
 .trener-jmeno {
-    font-size: 18px;
-    font-weight: bold;
+    font-family: 'Anton', sans-serif;
+    font-size: 22px;
+    letter-spacing: 1px;
+    color: var(--white) !important;
+    margin-bottom: 4px !important;
 }
 
-a {
-    color: #00529f;
+.trener-od {
+    font-size: 13px;
+    color: rgba(255, 255, 255, .7) !important;
+    margin: 0 !important;
+}
+
+.stadion-nazev {
+    font-family: 'Anton', sans-serif;
+    font-size: 20px;
+    color: var(--rm-blue) !important;
+    letter-spacing: .5px;
+    margin-bottom: 10px !important;
+}
+
+.stadion-info {
+    font-size: 14px;
+    color: var(--text-muted) !important;
+    margin-bottom: 4px !important;
+}
+
+.odkazy-list {
+    list-style: none;
+    padding: 0;
+}
+
+.odkazy-list li {
+    border-bottom: 1px solid var(--border);
+}
+
+.odkazy-list li:last-child {
+    border-bottom: none;
+}
+
+.odkazy-list a {
+    display: block;
+    padding: 12px 0;
+    color: var(--rm-blue);
     text-decoration: none;
-    font-weight: bold;
+    font-weight: 600;
+    font-size: 14px;
+    transition: color .25s ease, padding-left .25s ease;
 }
 
-a:hover {
-    text-decoration: underline;
+.odkazy-list a:hover {
+    color: var(--rm-gold);
+    padding-left: 8px;
 }
 
-@media (max-width: 768px) {
+/* === PATIČKA === */
+
+.paticka {
+    background-color: var(--rm-blue-deep);
+    color: rgba(255, 255, 255, .8);
+    padding: 32px 20px;
+    border-top: 4px solid var(--rm-gold);
+    margin-top: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.paticka-obsah {
+    text-align: left;
+}
+
+.paticka-text {
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
+.paticka-text strong {
+    color: var(--rm-gold);
+}
+
+.paticka-poznamka {
+    font-size: 12px;
+    color: rgba(255, 255, 255, .5);
+}
+
+/* Validátory vpravo */
+.paticka-validatory {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.paticka-validatory a {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 6px 12px;
+    border: 1px solid rgba(254, 190, 16, .4);
+    border-radius: 6px;
+    background: rgba(255, 255, 255, .04);
+    color: var(--rm-gold);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-decoration: none;
+    transition:
+        background .25s ease,
+        border-color .25s ease,
+        transform .25s ease;
+}
+
+.paticka-validatory a:hover {
+    background: rgba(254, 190, 16, .12);
+    border-color: var(--rm-gold);
+    transform: translateY(-2px);
+}
+
+/* === FADE-UP ANIMACE PŘI SCROLLU === */
+
+.js .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s cubic-bezier(.2, .7, .3, 1);
+}
+
+.js .reveal.visible {
+    opacity: 1;
+    transform: none;
+}
+
+html:not(.js) .reveal {
+    opacity: 1;
+    transform: none;
+}
+
+/* === RESPONZIVNÍ === */
+
+@media (max-width: 900px) {
     .obsah {
         grid-template-columns: 1fr;
-        margin: 10px auto;
+        gap: 20px;
+        margin: 24px auto;
     }
 
-    .hlavicka {
+    .postranni-panel {
+        position: static;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 20px;
+    }
+
+    .postranni-panel .karta {
+        margin-bottom: 0;
+    }
+}
+
+@media (max-width: 640px) {
+    .hlavicka-obsah {
+        padding: 10px 14px;
         flex-direction: column;
-        text-align: center;
-        gap: 10px;
-    }
-
-    h1 {
-        font-size: 26px;
+        gap: 12px;
     }
 
     .menu {
         justify-content: center;
+        gap: 4px;
     }
 
     .menu a {
-        margin-right: 0;
-        background-color: #f1f5f9;
-        border-radius: 4px;
+        font-size: 12px;
+        padding: 6px 10px;
+    }
+
+    .hero {
+        min-height: 480px;
+        padding: 60px 16px;
+    }
+
+    .hero-nadpis {
+        letter-spacing: 1px;
+    }
+
+    .hero-motto {
+        letter-spacing: 3px;
     }
 
     .karta {
-        padding: 15px;
+        padding: 20px 16px;
+        border-radius: 10px;
     }
 
-    .mrizka-legendy,
+    .karta h2 {
+        font-size: 20px;
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+
+    .mrizka-legendy {
+        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    }
+
+    .legenda-foto {
+        width: 52px;
+        height: 52px;
+        font-size: 20px;
+    }
+
+    .legenda h4 {
+        font-size: 12px;
+    }
+
+    .timeline-polozka {
+        grid-template-columns: 60px 1fr;
+        gap: 16px;
+        padding-left: 20px;
+        padding-bottom: 22px;
+    }
+
+    .timeline-rok {
+        font-size: 20px;
+    }
+
+    .mrizka-trofeji {
+        grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    }
+
+    .trofej-cislo {
+        font-size: 34px;
+    }
+
+    .trofej-nazev {
+        font-size: 10px;
+    }
+
     .mrizka-hraci {
-        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        grid-template-columns: 1fr;
+    }
+
+    /* Patička se na mobilu poskládá pod sebe a vycentruje. */
+    .paticka {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .paticka-obsah {
+        text-align: center;
+    }
+
+    .paticka-validatory {
+        justify-content: center;
+    }
+}
+
+/* Uživatelé s vypnutými animacemi: vypnutí pohybu. */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+    }
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    .js .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
     }
 }

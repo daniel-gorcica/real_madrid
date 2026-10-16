@@ -4,88 +4,190 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Real Madrid</title>
+    <title>Real Madrid | Fanouškovský web</title>
+    <meta name="description"
+        content="Fanouškovský web o Realu Madrid – historie, legendy, soupiska a trofeje. ¡Hala Madrid!">
+    <meta name="author" content="Daniel Gorčica">
+
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <!-- Záhlaví -->
+    <!-- Pevná hlavička s logem a menu -->
     <header class="hlavicka">
-        <img src="logo.jpg" alt="Logo Realu Madrid" class="logo">
-        <div>
-            <h1>REAL MADRID</h1>
-            <p class="podnadpis">¡HALA MADRID!</p>
+        <div class="hlavicka-obsah">
+            <a href="#" class="logo-odkaz" aria-label="Domů">
+                <img src="logo.jpg" alt="Logo Realu Madrid" class="logo">
+            </a>
+            <nav class="menu" aria-label="Hlavní navigace">
+                <a href="#o-klubu">O klubu</a>
+                <a href="#legendy">Legendy</a>
+                <a href="#historie">Historie</a>
+                <a href="#trofeje">Trofeje</a>
+                <a href="#soupiska">Soupiska</a>
+                <a href="#odkazy">Odkazy</a>
+            </nav>
         </div>
     </header>
 
-    <!-- Navigace -->
-    <nav class="menu">
-        <a href="#o-klubu">O klubu</a>
-        <a href="#hraci">Legendy</a>
-        <a href="#historie">Historie</a>
-        <a href="#trener">Trenér</a>
-        <a href="#soupiska">Soupiska</a>
-        <a href="#odkazy">Odkazy</a>
-    </nav>
+    <!-- Hero sekce s atmosférou stadionu -->
+    <section class="hero">
+        <div class="hero-obsah">
+            <p class="hero-podnadpis">▶ Fanouškovský web</p>
+            <h1 class="hero-nadpis">REAL<br>MADRID</h1>
+            <p class="hero-motto">¡HALA MADRID!</p>
+            <p class="hero-popis">
+                Jeden z nejúspěšnějších fotbalových klubů historie.<br>
+                15× vítěz Ligy mistrů · 36× mistr Španělska · 20× Copa del Rey
+            </p>
+            <a href="#o-klubu" class="hero-tlacitko">Zjistit více ↓</a>
+        </div>
+        <div class="hero-scroll">▼</div>
+    </section>
 
-    <!-- Hlavní obal webu -->
+    <!-- Hlavní obsah: dva sloupce (main + aside) -->
     <div class="obsah">
 
         <!-- Levý hlavní panel -->
         <main class="hlavni-panel">
 
-            <section id="o-klubu" class="karta">
-                <h2>O klubu</h2>
+            <!-- O klubu -->
+            <section id="o-klubu" class="karta reveal">
+                <h2><span class="cislo-sekce">01 //</span> O klubu</h2>
                 <p>
                     Real Madrid je jeden z nejznámějších a nejúspěšnějších fotbalových klubů
                     na světě. Klub pochází ze Španělska a sídlí v hlavním městě Madridu.
                 </p>
+                <p>
+                    Byl založen v roce 1902 a od té doby se stal symbolem fotbalové dokonalosti.
+                    Domácí zápasy hraje na stadionu <strong>Santiago Bernabéu</strong>, který
+                    pojme přes 80 000 diváků.
+                </p>
             </section>
 
-            <section id="hraci" class="karta">
-                <h2>Nejznámější hráči</h2>
+            <!-- Legendy -->
+            <section id="legendy" class="karta reveal">
+                <h2><span class="cislo-sekce">02 //</span> Legendy klubu</h2>
                 <div class="mrizka-legendy">
-                    <div class="polozka">Cristiano Ronaldo</div>
-                    <div class="polozka">Zinedine Zidane</div>
-                    <div class="polozka">Raúl González</div>
-                    <div class="polozka">Alfredo Di Stéfano</div>
-                    <div class="polozka">Ferenc Puskás</div>
+                    <div class="legenda">
+                        <div class="legenda-foto">CR</div>
+                        <h4>Cristiano Ronaldo</h4>
+                        <p class="legenda-pozice">Útočník</p>
+                        <p class="legenda-roky">2009 – 2018</p>
+                    </div>
+                    <div class="legenda">
+                        <div class="legenda-foto">ZZ</div>
+                        <h4>Zinedine Zidane</h4>
+                        <p class="legenda-pozice">Záložník</p>
+                        <p class="legenda-roky">2001 – 2006</p>
+                    </div>
+                    <div class="legenda">
+                        <div class="legenda-foto">RG</div>
+                        <h4>Raúl González</h4>
+                        <p class="legenda-pozice">Útočník</p>
+                        <p class="legenda-roky">1994 – 2010</p>
+                    </div>
+                    <div class="legenda">
+                        <div class="legenda-foto">AD</div>
+                        <h4>Alfredo Di Stéfano</h4>
+                        <p class="legenda-pozice">Útočník</p>
+                        <p class="legenda-roky">1953 – 1964</p>
+                    </div>
+                    <div class="legenda">
+                        <div class="legenda-foto">FP</div>
+                        <h4>Ferenc Puskás</h4>
+                        <p class="legenda-pozice">Útočník</p>
+                        <p class="legenda-roky">1958 – 1966</p>
+                    </div>
                 </div>
             </section>
 
-            <section id="historie" class="karta">
-                <h2>Historie a úspěchy</h2>
-                <table>
-                    <tr>
-                        <th>Rok</th>
-                        <th>Úspěch</th>
-                    </tr>
-                    <tr>
-                        <td><span class="rok">1902</span></td>
-                        <td>Založení klubu</td>
-                    </tr>
-                    <tr>
-                        <td><span class="rok">1956</span></td>
-                        <td>První vítězství v Poháru mistrů evropských zemí</td>
-                    </tr>
-                    <tr>
-                        <td><span class="rok">2014</span></td>
-                        <td>Desátý titul v Lize mistrů UEFA (La Décima)</td>
-                    </tr>
-                </table>
+            <!-- Historie jako timeline -->
+            <section id="historie" class="karta reveal">
+                <h2><span class="cislo-sekce">03 //</span> Historie a úspěchy</h2>
+                <div class="timeline">
+                    <div class="timeline-polozka">
+                        <div class="timeline-rok">1902</div>
+                        <div class="timeline-text">
+                            <h4>Založení klubu</h4>
+                            <p>Klub byl založen pod názvem Madrid Football Club.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-polozka">
+                        <div class="timeline-rok">1956</div>
+                        <div class="timeline-text">
+                            <h4>První Pohár mistrů</h4>
+                            <p>Real Madrid vyhrál první ročník Poháru mistrů evropských zemí a odstartoval
+                                sérii pěti vítězství v řadě.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-polozka">
+                        <div class="timeline-rok">2014</div>
+                        <div class="timeline-text">
+                            <h4>La Décima</h4>
+                            <p>Desátý titul v Lize mistrů UEFA po vítězství nad Atléticem Madrid 4:1.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-polozka">
+                        <div class="timeline-rok">2024</div>
+                        <div class="timeline-text">
+                            <h4>Patnáctý titul v LM</h4>
+                            <p>Real Madrid získal rekordní 15. titul v Lize mistrů vítězstvím nad Borussií
+                                Dortmund 2:0.</p>
+                        </div>
+                    </div>
+                </div>
             </section>
 
-            <section id="soupiska" class="karta">
-                <h2>Aktuální soupiska</h2>
+            <!-- Trofeje -->
+            <section id="trofeje" class="karta reveal">
+                <h2><span class="cislo-sekce">04 //</span> Trofeje</h2>
+                <div class="mrizka-trofeji">
+                    <div class="trofej">
+                        <div class="trofej-cislo">15</div>
+                        <div class="trofej-nazev">Liga mistrů</div>
+                    </div>
+                    <div class="trofej">
+                        <div class="trofej-cislo">36</div>
+                        <div class="trofej-nazev">La Liga</div>
+                    </div>
+                    <div class="trofej">
+                        <div class="trofej-cislo">20</div>
+                        <div class="trofej-nazev">Copa del Rey</div>
+                    </div>
+                    <div class="trofej">
+                        <div class="trofej-cislo">13</div>
+                        <div class="trofej-nazev">Supercopa</div>
+                    </div>
+                    <div class="trofej">
+                        <div class="trofej-cislo">5</div>
+                        <div class="trofej-nazev">Mistrovství světa klubů</div>
+                    </div>
+                    <div class="trofej">
+                        <div class="trofej-cislo">3</div>
+                        <div class="trofej-nazev">Intercontinental Cup</div>
+                    </div>
+                </div>
+            </section>
 
-                <h3>Gólmani</h3>
+            <!-- Soupiska -->
+            <section id="soupiska" class="karta reveal">
+                <h2><span class="cislo-sekce">05 //</span> Soupiska</h2>
+
+                <h3>🧤 Gólmani</h3>
                 <div class="mrizka-hraci">
                     <div class="hrac"><span class="cislo">#1</span> Thibaut Courtois</div>
                     <div class="hrac"><span class="cislo">#13</span> Andrij Lunin</div>
                 </div>
 
-                <h3>Obránci</h3>
+                <h3>🛡️ Obránci</h3>
                 <div class="mrizka-hraci">
                     <div class="hrac"><span class="cislo">#2</span> Raúl Asencio</div>
                     <div class="hrac"><span class="cislo">#3</span> Éder Militão</div>
@@ -99,7 +201,7 @@
                     <div class="hrac"><span class="cislo">#24</span> Denzel Dumfries</div>
                 </div>
 
-                <h3>Záložníci</h3>
+                <h3>⚙️ Záložníci</h3>
                 <div class="mrizka-hraci">
                     <div class="hrac"><span class="cislo">#5</span> Jude Bellingham</div>
                     <div class="hrac"><span class="cislo">#6</span> Eduardo Camavinga</div>
@@ -109,7 +211,7 @@
                     <div class="hrac"><span class="cislo">#20</span> Bernardo Silva</div>
                 </div>
 
-                <h3>Útočníci</h3>
+                <h3>⚽ Útočníci</h3>
                 <div class="mrizka-hraci">
                     <div class="hrac"><span class="cislo">#7</span> Vinícius Júnior</div>
                     <div class="hrac"><span class="cislo">#9</span> Endrick</div>
@@ -127,20 +229,74 @@
         <!-- Pravý postranní panel -->
         <aside class="postranni-panel">
 
-            <div id="trener" class="karta">
+            <!-- Trenér -->
+            <div class="karta karta-trener reveal">
                 <h3>Současný trenér</h3>
-                <p class="trener-jmeno">José Mourinho</p>
+                <div class="trener-foto">XA</div>
+                <p class="trener-jmeno">Xabi Alonso</p>
+                <p class="trener-od">od roku 2025</p>
             </div>
 
-            <div id="odkazy" class="karta">
+            <!-- Stadion -->
+            <div class="karta reveal">
+                <h3>Domácí stadion</h3>
+                <p class="stadion-nazev">Santiago Bernabéu</p>
+                <p class="stadion-info">Kapacita: <strong>81 044</strong></p>
+                <p class="stadion-info">Otevřeno: <strong>1947</strong></p>
+            </div>
+
+            <!-- Odkazy -->
+            <div id="odkazy" class="karta reveal">
                 <h3>Užitečné odkazy</h3>
-                <p><a href="https://www.realmadrid.com/" target="_blank">Oficiální web &rarr;</a></p>
-                <p><a href="https://en.wikipedia.org/wiki/Real_Madrid_CF" target="_blank">Wikipedie &rarr;</a></p>
+                <ul class="odkazy-list">
+                    <li><a href="https://www.realmadrid.com/" target="_blank" rel="noopener">Oficiální web ↗</a></li>
+                    <li><a href="https://en.wikipedia.org/wiki/Real_Madrid_CF" target="_blank" rel="noopener">Wikipedie
+                            ↗</a></li>
+                    <li><a href="https://www.laliga.com/" target="_blank" rel="noopener">La Liga ↗</a></li>
+                </ul>
             </div>
 
         </aside>
 
     </div>
+
+    <!-- Patička -->
+    <footer class="paticka">
+        <div class="paticka-obsah">
+            <p class="paticka-text">© 2026 Real Madrid Fan Web · Vytvořil <strong>Daniel Gorčica</strong></p>
+            <p class="paticka-poznamka">Fanouškovský web · Není oficiální stránkou klubu</p>
+        </div>
+
+        <div class="paticka-validatory">
+            <a href="https://validator.w3.org/nu/?doc=https%3A%2F%2Fdaniel-gorcica.github.io%2Freal_madrid%2F"
+                target="_blank" rel="noopener" title="Zkontrolovat HTML">
+                HTML5 ✓
+            </a>
+            <a href="https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fdaniel-gorcica.github.io%2Freal_madrid%2F&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=cs"
+                target="_blank" rel="noopener" title="Zkontrolovat CSS">
+                CSS3 ✓
+            </a>
+        </div>
+    </footer>
+
+    <script>
+        // Přidání třídy .js na <html> – fade-up animace se aktivují jen když JS běží.
+        document.documentElement.classList.add('js');
+
+        // IntersectionObserver sleduje, kdy se prvky s .reveal objeví ve viewportu.
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.15
+        });
+
+        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+    </script>
 
 </body>
 
