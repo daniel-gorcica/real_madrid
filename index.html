@@ -270,6 +270,14 @@
     <script>
         document.documentElement.classList.add('js');
 
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const revealElements = document.querySelectorAll('.reveal');
+        const legendCards = document.querySelectorAll('.legenda');
+
+        legendCards.forEach((card, index) => {
+            card.style.setProperty('--delay', prefersReducedMotion ? '0ms' : `${index * 90}ms`);
+        });
+
         const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -281,7 +289,27 @@
             threshold: 0.15
         });
 
-        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+        [...revealElements, ...legendCards].forEach(el => revealObserver.observe(el));
+
+        const menuLinks = [...document.querySelectorAll('.menu a')];
+        const sections = [...document.querySelectorAll('main section[id], aside [id]')];
+
+        const menuObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) {
+                    return;
+                }
+
+                menuLinks.forEach(link => {
+                    link.classList.toggle('active', link.getAttribute('href') === `#${entry.target.id}`);
+                });
+            });
+        }, {
+            rootMargin: '-35% 0px -55% 0px',
+            threshold: 0
+        });
+
+        sections.forEach(section => menuObserver.observe(section));
     </script>
 
 </body>

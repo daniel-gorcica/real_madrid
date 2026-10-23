@@ -11,6 +11,7 @@
     --rm-blue-deep: #001f3f;
     --rm-gold: #febe10;
     --rm-gold-light: #ffd647;
+    --rm-gold-soft: #fff4c7;
     --bg-light: #f1f5f9;
     --text-dark: #0f172a;
     --text-muted: #64748b;
@@ -23,7 +24,9 @@ html {
 }
 
 body {
-    background-color: var(--bg-light);
+    background:
+        radial-gradient(circle at 8% 12%, rgba(254, 190, 16, .12), transparent 25rem),
+        linear-gradient(135deg, #f8fafc 0%, var(--bg-light) 55%, #e8f1fb 100%);
     color: var(--text-dark);
     font-family: 'Inter', Arial, sans-serif;
     line-height: 1.6;
@@ -90,6 +93,12 @@ body {
 .menu a:hover {
     background-color: var(--rm-gold);
     color: var(--rm-blue-deep);
+}
+
+.menu a.active {
+    background-color: rgba(254, 190, 16, .18);
+    color: var(--rm-gold);
+    box-shadow: inset 0 -2px 0 var(--rm-gold);
 }
 
 /* === HERO SEKCE === */
@@ -246,7 +255,7 @@ body {
 
 .obsah {
     max-width: 1200px;
-    margin: 40px auto;
+    margin: 48px auto;
     padding: 0 20px;
     display: grid;
     grid-template-columns: 2fr 1fr;
@@ -266,13 +275,15 @@ body {
     margin-bottom: 24px;
     border-radius: 14px;
     border: 1px solid var(--border);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, .04);
+    box-shadow: 0 8px 24px rgba(0, 31, 63, .06);
     scroll-margin-top: 100px;
-    transition: box-shadow .3s ease, transform .3s ease;
+    transition: box-shadow .3s ease, transform .3s ease, border-color .3s ease;
 }
 
 .karta:hover {
-    box-shadow: 0 8px 24px rgba(0, 82, 159, .08);
+    border-color: rgba(0, 82, 159, .2);
+    box-shadow: 0 14px 32px rgba(0, 82, 159, .12);
+    transform: translateY(-2px);
 }
 
 .karta h2 {
@@ -324,18 +335,39 @@ body {
 
 .mrizka-legendy {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: 16px;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 18px;
 }
 
 .legenda {
-    background: linear-gradient(135deg, var(--rm-blue) 0%, var(--rm-blue-dark) 100%);
+    position: relative;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 50% -10%, rgba(254, 190, 16, .2), transparent 55%),
+        linear-gradient(145deg, var(--rm-blue) 0%, var(--rm-blue-dark) 100%);
     color: var(--white);
-    padding: 20px 14px;
+    min-height: 218px;
+    padding: 24px 14px 20px;
     border-radius: 12px;
     text-align: center;
-    border: 2px solid transparent;
+    border: 1px solid rgba(255, 255, 255, .1);
+    box-shadow: 0 8px 18px rgba(0, 31, 63, .16);
     transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+}
+
+.js .legenda {
+    opacity: 0;
+    transform: translateY(18px) scale(.97);
+    transition:
+        opacity .55s ease var(--delay, 0ms),
+        transform .55s cubic-bezier(.2, .7, .3, 1) var(--delay, 0ms),
+        border-color .3s ease,
+        box-shadow .3s ease;
+}
+
+.js .legenda.visible {
+    opacity: 1;
+    transform: none;
 }
 
 .legenda:hover {
@@ -359,16 +391,18 @@ body {
     box-shadow: 0 0 0 4px rgba(255, 255, 255, .1);
 }
 
-.legenda h4 {
-    font-size: 14px;
+.legenda h3 {
+    color: var(--rm-gold-soft);
+    font-size: 15px;
     font-weight: 700;
-    margin-bottom: 6px;
+    margin: 0 0 8px;
     line-height: 1.3;
 }
 
 .legenda-pozice {
     font-size: 11px;
-    color: var(--rm-gold);
+    color: var(--white);
+    opacity: .82;
     text-transform: uppercase;
     letter-spacing: 1px;
     margin-bottom: 4px !important;
@@ -376,7 +410,8 @@ body {
 
 .legenda-roky {
     font-size: 11px;
-    color: rgba(255, 255, 255, .7) !important;
+    color: var(--rm-gold) !important;
+    font-weight: 600;
     margin-bottom: 0 !important;
 }
 
@@ -772,7 +807,7 @@ html:not(.js) .reveal {
         font-size: 20px;
     }
 
-    .legenda h4 {
+    .legenda h3 {
         font-size: 12px;
     }
 
@@ -834,6 +869,12 @@ html:not(.js) .reveal {
     }
 
     .js .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+
+    .js .legenda {
         opacity: 1;
         transform: none;
         transition: none;
